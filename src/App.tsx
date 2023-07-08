@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, NavLink } from "react-router-dom";
+import { Category, Products } from "./components";
+import "./assets/style.scss";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const baseURL = "https://dummyjson.com";
+
+interface AppState {
+	products: [];
+	categories: string[];
+	name: string;
 }
 
-export default App;
+export default class App extends React.Component<{}, AppState> {
+  state: AppState = {
+    products: [],
+	  categories: [],
+    name: "All",
+  }
+
+
+	render() {
+		return (
+			<div className="row">
+				<Category />
+				<Products />
+			</div>
+		);
+	}
+}
